@@ -183,11 +183,10 @@ class MRIDataset2(torch.utils.data.Dataset):
         """
 
         self.augment = augment
-        dataset = h5py.File(path, 'r')
-        self.images = dataset['images'][:]
-        self.masks = dataset['masks'][:]
+        with h5py.File(path, 'r') as dataset:
+            self.images = dataset['images'][:]
+            self.masks = dataset['masks'][:]
         self.labels = []
-        dataset.close()
 
         # Определяем трансформации
         if self.augment:
