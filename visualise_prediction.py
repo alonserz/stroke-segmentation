@@ -74,7 +74,7 @@ def main():
     torch.cuda.manual_seed_all(random_seed)
 
     # Создание валидационного датасета и загрузчика данных
-    TEST_DATASET_PATH = "./data/test_dataset.h5"
+    TEST_DATASET_PATH = "./data/test_dataset_.h5"
     BATCH_SIZE = 1
     DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     MODELS_WEIGHTS_PATH = r'D:\models'
@@ -89,12 +89,12 @@ def main():
     test_dataset = MRIDataset2(path = TEST_DATASET_PATH, augment = False, transform = additional_transforms)
     test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, drop_last=False, shuffle = True)
 
-    model = Unet_smp(encoder_name = 'efficientnet-b2', in_channels = 2, decoder_attention_type = 'scse')
+    model = Unet_smp(encoder_name = 'efficientnet-b2', in_channels = 2)
 
     model.to(DEVICE)
 
     # Загрузка сохранённых весов
-    checkpoint = torch.load(MODELS_WEIGHTS_PATH + r'\unetefficientnetb2_90dice_0.74iou_scse_jaccardloss.pt', map_location=DEVICE)
+    checkpoint = torch.load(r"D:\projects\stroke-segmentation\models_weights\1755183012.4822984\best_efficientnet-b2.pt", map_location=DEVICE)
     model.load_state_dict(checkpoint['state_dict'])
     model.eval()
 
