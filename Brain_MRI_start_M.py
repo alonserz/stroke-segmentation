@@ -45,7 +45,7 @@ DATASET = "./data/train_dataset.h5"
 VAL_DATASET = "./data/val_dataset_.h5"
 BATCH_SIZE = 12
 
-torch.autograd.set_detect_anomaly(True)
+torch.autograd.set_detect_anomaly(False)
 
 random.seed(42)
 np.random.seed(42)
@@ -101,6 +101,7 @@ def objective(trial):
     print(f'Number of parameters: {sum(p.numel() for p in net.parameters()):,}')
 
     start_time = time.time()
+    print(start_time)
     os.mkdir(f'./models_weights/{start_time}')
     # Инициализация метрик
     train_jaccard = JaccardIndex(task='binary', average = 'macro').to(device)

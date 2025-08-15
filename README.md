@@ -12,7 +12,9 @@ pip install -r requirements.txt
 `inference.py` - trained model inference.
 
 ## Models' weights
-Will publish them later.
+| Architecture | Encoder name    | Jaccard Score | Dice Score | Weights                                                                                                                                                                |
+|--------------|-----------------|---------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| UNet         | efficientnet-b2 | 0.734         | -          | [link](https://github.com/alonserz/stroke-segmentation/blob/d0bf70f8986e37a2d43551ed6f12f7bf70c093c3/models_weights/best_model_efficientnetb2/best_efficientnet-b2.pt) |
 
 # Data description
 Dataset consists of ~3500 256x256x2 (HeightxWidthxChannels) MRI images of brain.
